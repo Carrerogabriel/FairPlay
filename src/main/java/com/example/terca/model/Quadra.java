@@ -10,8 +10,7 @@ import java.util.List;
 
 @Entity
 public class Quadra extends EntityId{
-    @OneToMany(mappedBy = "quadra")
-    private List<Reserva> reservas = new ArrayList<>();
+
 
     @Column(name = "nome", nullable = false)
     private String nome;
@@ -39,13 +38,6 @@ public class Quadra extends EntityId{
         this.status = status;
     }
 
-    public List<Reserva> getReservas() {
-        return reservas;
-    }
-
-    public void setReservas(List<Reserva> reservas) {
-        this.reservas = reservas;
-    }
 
     public String getNome() {
         return nome;

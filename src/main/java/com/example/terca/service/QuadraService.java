@@ -31,24 +31,11 @@ public class QuadraService {
     public Quadra alterarStatus(Long id, String novoStatus) {
         Quadra quadra = buscaPorId(id);
 
-        // Verifique se há regras adicionais para alterar o status
-        if ("disponível".equals(novoStatus) && quadraTemReservasPendentes(quadra)) {
-            throw new ValidationException("Não é possível marcar a quadra como disponível, pois há reservas pendentes");
-        }
-
         quadra.setStatus(novoStatus);
         return repositorioQuadra.save(quadra);
     }
 
-    public boolean quadraTemReservasPendentes(Quadra quadra) {
-        List<Reserva> reservas = quadra.getReservas();
 
-        if (reservas == null || reservas.isEmpty()) {
-            return false;
-        }
-
-        return reservas.stream().anyMatch(reserva -> "pendente".equals(reserva.getStatus()));
-    }
 
 
     public Quadra alterar(Long id, Quadra alterado) {
