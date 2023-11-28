@@ -45,6 +45,11 @@ public class PessoaController   {
         List<Pessoa> pessoa = servicePessoa.buscaTodos();
         return ResponseEntity.ok(pessoa);
     }
+    @GetMapping("/{id}")
+    public  ResponseEntity findById(@PathVariable("id") Long id){
+        Pessoa pessoa = servicePessoa.buscaPorId(id);
+        return ResponseEntity.ok(pessoa);
+    }
 
     @DeleteMapping("{id}")
     public  ResponseEntity remove(@PathVariable("id") Long id){
